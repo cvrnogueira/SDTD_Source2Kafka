@@ -35,7 +35,7 @@ object Application extends App with LazyLogging {
         status.getUser.getId,
         status.getCreatedAt.toInstant.getEpochSecond,
         status.getText,
-        Some(if (status.getPlace != null) status.getPlace.getCountry else status.getUser.getLocation)
+        Option(if (status.getPlace != null) status.getPlace.getCountry else status.getUser.getLocation)
       )
 
       val send = producer.sendToTopics2Flink(

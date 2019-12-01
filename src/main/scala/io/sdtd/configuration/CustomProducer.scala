@@ -11,7 +11,10 @@ import scala.util.Try
 class CustomProducer {
 
   val producerProperties = new Properties()
-  producerProperties.put("bootstrap.servers", "127.0.0.1:9092")
+
+  val bootstrapHost = sys.env.getOrElse("KAFKA_CLUSTER_ENTRY_POINT", "127.0.0.1")
+
+  producerProperties.put("bootstrap.servers", s"$bootstrapHost:9092")
   producerProperties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
   producerProperties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
