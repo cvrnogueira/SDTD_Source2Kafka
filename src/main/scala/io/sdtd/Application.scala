@@ -33,7 +33,7 @@ object Application extends App with LazyLogging {
     override def onStatus(status: Status) {
       val response = TwitterPayload(
         status.getUser.getId,
-        status.getCreatedAt.toInstant.getEpochSecond,
+        status.getCreatedAt.getTime,
         status.getText,
         Option(if (status.getPlace != null) status.getPlace.getCountry else status.getUser.getLocation)
       )
