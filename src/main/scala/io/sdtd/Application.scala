@@ -5,7 +5,6 @@ import java.time.LocalDate
 import com.typesafe.scalalogging.LazyLogging
 import io.circe.syntax._
 import io.sdtd.configuration.CustomProducer
-import io.sdtd.dictonary.Words
 import io.sdtd.model.TwitterPayload
 import twitter4j._
 import twitter4j.conf.ConfigurationBuilder
@@ -61,15 +60,10 @@ object Application extends App with LazyLogging {
     override def onException(ex: Exception): Unit = { logger.error(ex.getMessage, ex) }
   })
 
-  // filter tweets by words
-  val streamFilter = new FilterQuery()
-    .track(Words.allWords: _*)
-
-  // make sure to use previously created filter
-  // within tweet stream and start a thread to sample
-  // tweets accordingly to docs twitter api can send at
-  // most 1% of total tweets being posted
-  twitterStream.filter(streamFilter)
+  // start a thread to sample tweets accordingly
+  // to docs twitter api can send at most 1% of total
+  // tweets being posted
+  twitterStream.sample()
 
   // block main thread until a sigterm is received
   // to keep tweet sampling thread running since once main
