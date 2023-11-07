@@ -16,10 +16,10 @@ object Application extends App with LazyLogging {
   //TODO: set as environment in AWS
   val cb = new ConfigurationBuilder()
     .setDebugEnabled(true)
-    .setOAuthConsumerKey("ASlTxPyBERizvhPcLa4Tx0snH")
-    .setOAuthConsumerSecret("mnWNdHWE2PSBXh5f9R2JCDw3sZDRtfGjGCx7aODWGj5oFePcNF")
-    .setOAuthAccessToken("328681900-NWOqyzur9ZcTgj51tY4Ed2zibwysWuq7UG4JrkKJ")
-    .setOAuthAccessTokenSecret("HMDwnJa8zAhgHHKBrPv9UVKLm1dv30oa6vWITOxhuHQey")
+    .setOAuthConsumerKey("-")
+    .setOAuthConsumerSecret("-")
+    .setOAuthAccessToken("328681900--")
+    .setOAuthAccessTokenSecret("-")
 
   val tf = new TwitterStreamFactory(cb.build())
   val twitterStream = tf.getInstance()
